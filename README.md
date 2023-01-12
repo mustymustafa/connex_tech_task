@@ -6,7 +6,7 @@ To start the Node server,
 
 	b. install the node_modules using yarn 
 
-	c. configure the port by creating a .env file in the root folder using the following PORT=8080 or by setting it directly from the app.ts file
+	c. The port PORT used is currently set to 8080 in the .env file. you can change this from the .env or by setting it directly from the app.ts file. Changing the PORT from 8080 would also require you to change it from the frontend
 	
 	d. start the server using yarn start-dev
 
