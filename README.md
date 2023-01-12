@@ -6,7 +6,9 @@ To start the Node server,
 
 	b. install the node_modules using yarn 
 
-	c. configure your port or use the default port from the .env file d. start the server using yarn start-dev
+	c. configure the port by creating a .env file in the root folder using the following PORT=8080
+	
+	d. start the server using yarn start-dev
 
 
 To run the React application,
