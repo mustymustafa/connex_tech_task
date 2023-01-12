@@ -45,7 +45,7 @@ function App() {
       const interval = setInterval(() => {
           getEpochSeconds();
           getMetrics();
-      }, 10000);
+      }, 20000);
       return () => clearInterval(interval);
   }, [])
 
@@ -149,13 +149,7 @@ function App() {
               <CircularProgress color="inherit" />
             ) : (
               <>
-                <Typography
-                  variant="h3"
-                  align="center"
-                  color="white"
-                >
-                  Server Metrics
-                </Typography>
+              
                 <Item>{metricsData}</Item>
               </>
             )}

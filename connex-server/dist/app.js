@@ -10,6 +10,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const http_1 = __importDefault(require("http"));
 const express_prometheus_middleware_1 = __importDefault(require("express-prometheus-middleware"));
+const validators_1 = require("./middlewares/validators");
 const HomeController_1 = __importDefault(require("./controllers/HomeController"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
@@ -28,7 +29,8 @@ app.use((0, express_prometheus_middleware_1.default)({
      * To access /metrics you could do:
      * curl -X GET user:password@localhost:9091/metrics
      */
-    // authenticate: req => req.headers.authorization === 'Basic dXNlcjpwYXNzd29yZA==',
+    // 
+    authenticate: req => req.headers.authorization === 'Basic dXNlcjpwYXNzd29yZA==',
     /**
      * Uncommenting the `extraMasks` config will use the list of regexes to
      * reformat URL path names and replace the values found with a placeholder value
@@ -49,7 +51,7 @@ app.use((0, express_prometheus_middleware_1.default)({
     // },
 }));
 //routes
-app.get("/api/v1/time", HomeController_1.default.getTime);
+app.get("/api/v1/time", validators_1.myRequestHeaders, validators_1.validateRequest, HomeController_1.default.getTime);
 //server creation
 const port = process.env.PORT && parseInt(process.env.PORT, 10);
 app.set("port", port);
