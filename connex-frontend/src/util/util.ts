@@ -11,5 +11,9 @@ export function timeDifference(clientTime: number, serverTime: number): string {
   const differenceInMinutes = Math.floor(differenceInSeconds / 60);
   const differenceInHours = Math.floor(differenceInMinutes / 60);
 
-  return `${differenceInHours}:${differenceInMinutes}:${differenceInSeconds}`;
+  return `${pad(differenceInHours)}:${pad(differenceInMinutes)}:${pad(differenceInSeconds)}`;
+}
+
+function pad(n:number) {
+  return n < 10 ? "0" + n : n;
 }
