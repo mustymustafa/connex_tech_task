@@ -15,7 +15,6 @@ import PublicIcon from "@mui/icons-material/Public";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Backdrop from "@mui/material/Backdrop";
-import { Typography } from "@mui/material";
 
 import {timeDifference} from './util/util';
 
@@ -42,28 +41,34 @@ function App() {
   
 
   useEffect(() => {
-      const interval = setInterval(() => {
           getEpochSeconds();
           getMetrics();
-      }, 20000);
-      return () => clearInterval(interval);
   }, [])
 
+    useEffect(() => {
+      const interval = setInterval(() => {
+        getEpochSeconds();
+        getMetrics();
+      }, 30000);
+      return () => clearInterval(interval);
+    }, []);
+
   const getEpochSeconds = async () => {
+     setServerLoading(true);
       const epochSeconds = await getServerTime();
       setServerTime(epochSeconds);
-      setServerLoading(false)
       const now = new Date();
       const clientEpochSeconds = Math.round(now.getTime() / 1000);
       setClientTime(clientEpochSeconds);
 
       const getDiff = timeDifference(clientEpochSeconds, epochSeconds);
       setTimeDifference(getDiff);
-
+      setServerLoading(false);
 
   };
 
   const getMetrics = async() => {
+     setServerLoading(true);
     const data = await getServerMetrics();
     setMetricsData(`${data}`);
     setMetricsLoading(false)
