@@ -1,6 +1,9 @@
 import { URL } from "../helpers";
 import { encode } from "base-64";
 
+
+
+//Normally, these would be stored securely and retrieved when needed. but that wasn't implemented due to time contrainst 
 const token = 'mysecrettoken'
  let username = "user";
  let password = "password";
